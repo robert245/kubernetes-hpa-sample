@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: "2020-06-21T08:54:05Z"
+  labels:
+    com.docker.service.id: stresstest-stress-test
+    com.docker.service.name: stress-test
+    com.docker.stack.namespace: stresstest
+  name: stress-test-published
+spec:
+  externalTrafficPolicy: Cluster
+  ports:
+    - name: 8080-tcp
+      nodePort: 30929
+      port: 8080
+      protocol: TCP
+      targetPort: 8080
+  selector:
+    io.kompose.service: stress-test
+  sessionAffinity: None
+  type: LoadBalancer
